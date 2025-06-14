@@ -188,7 +188,8 @@ function MainPage({ setQuizData }) {
         <br /><br />
 
         <button style={{ 
-            backgroundColor:"#adece5", 
+            backgroundColor:"#5e6778", 
+            color: "white",
             padding: "10px", 
             borderRadius: "20px", 
             cursor: "pointer", 
