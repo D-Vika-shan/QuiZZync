@@ -1,4 +1,4 @@
-# ![logo](./public/logo192.png) QuiZZync
+# ![logo](./public/favicon.ico) QuiZZync
 
 **QuiZZync** is an AI-powered web app that generates Multiple Choice Questions (MCQs) from any given text, PDF, DOCX, or TXT file using Google Gemini API. The app supports mobile and desktop views and allows you to interactively take the generated quiz.
 
