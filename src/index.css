@@ -46,17 +46,21 @@ code {
   border-radius: 10px;
   background-color: lightyellow;
   text-align: left;
+  color: "black";
   font-size: 1rem;
   width: 100%;
   transition: background-color 0.3s ease;
 }
 
 .option-button.correct {
-  background-color: lightgreen !important;
+  background-color: rgb(187, 239, 187) !important;
+  border: rgb(12, 116, 73) solid;
+  border-width: 2px;;
 }
 
 .option-button.wrong {
-  background-color: salmon !important;
+  background-color: rgb(245, 158, 149) !important;
+  border: rgb(180, 14, 14) solid;
 }
 
 .quiz-button {
@@ -115,3 +119,5 @@ code {
   background-color: #a8fef0;
   transition: width 0.3s ease;
 }
+
+

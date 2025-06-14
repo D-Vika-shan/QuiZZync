@@ -44,16 +44,56 @@ function QuizPage({ quizData }) {
     return (
       <div className="quiz-container">
         <h1 className="quiz-title">QuiZZync</h1><br/>
-        <h2>🎉 Quiz Complete! 🎉</h2>
-        <p className="quiz-score">
-          Score: {score} / {quizData.length}
-        </p>
+        <h2>Quiz Complete!</h2>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <svg width="250" height="250" viewBox="0 0 250 250">
+            <circle
+              cx="125"
+              cy="125"
+              r="100"
+              stroke="rgb(248, 248, 248)" 
+              strokeWidth="50"
+              fill="none"
+            />
+            <circle
+              cx="125"
+              cy="125"
+              r="100"
+              stroke="rgb(180, 255, 178)"
+              strokeWidth="50"
+              fill="none"
+              strokeDasharray={2 * Math.PI * 100}
+              strokeDashoffset={
+                2 * Math.PI * 100 - (score / quizData.length) * 2 * Math.PI * 100
+              }
+              strokeLinecap= "butt"
+              transform="rotate(-90 125 125)"
+            />
+            <text
+              x="125"
+              y="135"
+              textAnchor="middle"
+              fontSize="36"
+              fill="#ffffff"
+              fontWeight="bold"
+            >
+              {Math.round((score / quizData.length) * 100)}%
+            </text>
+          </svg>
 
-        <button className="quiz-button" onClick={handleCopy}>
-          📋 Copy Quiz
+
+
+          <p style={{ color: "white", marginTop: "1rem", fontWeight: "bold" , fontSize: "2rem"}}>
+            Score: {score} / {quizData.length}
+          </p>
+        </div>
+
+
+        <button style={{backgroundColor: "black"}} className="quiz-button" onClick={handleCopy}>
+          Copy Quiz
         </button>
 
-        <button className="quiz-button" onClick={() => navigate("/")}>
+        <button style={{backgroundColor: "black"}} className="quiz-button" onClick={() => navigate("/")}>
           Go Home
         </button>
       </div>
