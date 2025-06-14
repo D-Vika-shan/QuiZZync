@@ -90,3 +90,23 @@ code {
 }
 
 
+.progress-indicator {
+  margin-bottom: 1rem;
+  color: white;
+  text-align: center;
+}
+
+.progress-bar {
+  height: 10px;
+  background-color: #4a486e;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0.5rem auto;
+  max-width: 100%;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #a8fef0;
+  transition: width 0.3s ease;
+}

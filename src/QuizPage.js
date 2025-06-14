@@ -63,6 +63,22 @@ function QuizPage({ quizData }) {
   return (
     <div className="quiz-container">
       <h1 className="quiz-title">QuiZZync</h1>
+      {/* Progress Indicator */}
+      <div className="progress-indicator">
+        
+        <div className="progress-bar">
+          <div
+            className="progress-fill"
+            style={{
+              width: `${((qIndex + 1) / quizData.length) * 100}%`
+            }}
+          />
+        </div>
+        <p style={{textAlign: "left", color: "lightyellow"}}>
+          Q {qIndex + 1} / {quizData.length}
+        </p>
+      </div>
+
       <h3>Question {qIndex + 1}:</h3>
       <p>{current.question}</p>
       <div className="options-container">
@@ -92,6 +108,10 @@ function QuizPage({ quizData }) {
           </button>
         </div>
       )}
+      <br/>
+      <button className="quiz-button" onClick={() => navigate("/")}>
+          Back Home
+      </button>
     </div>
   );
 }

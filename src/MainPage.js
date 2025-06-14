@@ -15,6 +15,8 @@ function MainPage({ setQuizData }) {
   const [inputText, setInputText] = useState("");
   const [fileName, setFileName] = useState("");
   const [loading, setLoading] = useState(false);
+  const [numQuestions, setNumQuestions] = useState(10); // Default 10
+
   const navigate = useNavigate();
 
   const extractText = async (file) => {
@@ -42,19 +44,20 @@ function MainPage({ setQuizData }) {
   };
 
   const generateMCQs = async (text) => {
-    const prompt = `
-Generate 10 multiple choice questions (MCQs) from the passage below.
+  const prompt = `
+    Generate ${numQuestions} multiple choice questions (MCQs) from the passage below.
 
-Each question must follow this format:
-1. Question?
-A. Option A
-B. Option B
-C. Option C
-D. Option D
-Answer: [A/B/C/D] (the "[]" must be included)
+    Each question must follow this format:
+    1. Question?
+    A. Option A
+    B. Option B
+    C. Option C
+    D. Option D
+    Answer: [A/B/C/D] (the "[]" must be included)
 
-Passage:
-"""${text}"""`;
+    Passage:
+    """${text}"""`;
+
 
     const payload = {
       contents: [{ parts: [{ text: prompt }] }],
@@ -68,23 +71,23 @@ Passage:
     const resultText = response.data.candidates[0].content.parts[0].text;
     console.log("Extracted result text:", resultText);
 
-    const mcqRegex =
-        /(\d+\.\s*(.*?)\nA\.\s*(.*?)\nB\.\s*(.*?)\nC\.\s*(.*?)\nD\.\s*(.*?)\nAnswer:\s*\[?([A-D])\]?)/g;
+    const mcqRegex = /\d+\.\s*(.*?)\n\s*A\.\s*(.*?)\n\s*B\.\s*(.*?)\n\s*C\.\s*(.*?)\n\s*D\.\s*(.*?)\n\s*Answer:\s*\[([A-D])\]/g;
 
-    let match,
-    quiz = [];
+
+    let match, quiz = [];
     while ((match = mcqRegex.exec(resultText)) !== null) {
     quiz.push({
-        question: match[2].trim(),
+        question: match[1].trim(),
         options: {
-        A: match[3].trim(),
-        B: match[4].trim(),
-        C: match[5].trim(),
-        D: match[6].trim(),
+        A: match[2].trim(),
+        B: match[3].trim(),
+        C: match[4].trim(),
+        D: match[5].trim(),
         },
-        answer: match[7].trim(),
+        answer: match[6].trim(),
     });
     }
+
     console.log("Parsed Quiz Array:", quiz);
     return quiz;
 };
@@ -164,6 +167,26 @@ Passage:
                 )}
 
         <br /><br/>
+        <label style={{ color: "white", fontWeight: "bold" }}>
+        Number of Questions:
+        <input
+            type="number"
+            min="1"
+            max="50"
+            value={numQuestions}
+            onChange={(e) => setNumQuestions(e.target.value)}
+            style={{
+            marginLeft: "10px",
+            padding: "5px 10px",
+            borderRadius: "10px",
+            border: "none",
+            width: "60px"
+            }}
+        />
+        </label>
+
+        <br /><br />
+
         <button style={{ 
             backgroundColor:"#adece5", 
             padding: "10px", 
