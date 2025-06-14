@@ -43,7 +43,7 @@ function QuizPage({ quizData }) {
 
     return (
       <div className="quiz-container">
-        <h1 className="quiz-title">QuiZZync</h1>
+        <h1 className="quiz-title">QuiZZync</h1><br/>
         <h2>🎉 Quiz Complete! 🎉</h2>
         <p className="quiz-score">
           Score: {score} / {quizData.length}
@@ -62,7 +62,9 @@ function QuizPage({ quizData }) {
 
   return (
     <div className="quiz-container">
+      
       <h1 className="quiz-title">QuiZZync</h1>
+      
       {/* Progress Indicator */}
       <div className="progress-indicator">
         
@@ -74,11 +76,13 @@ function QuizPage({ quizData }) {
             }}
           />
         </div>
+        
         <p style={{textAlign: "left", color: "lightyellow"}}>
           Q {qIndex + 1} / {quizData.length}
         </p>
+        
       </div>
-
+      
       <h3>Question {qIndex + 1}:</h3>
       <p>{current.question}</p>
       <div className="options-container">
@@ -103,15 +107,19 @@ function QuizPage({ quizData }) {
       </div>
       {selected && (
         <div style={{ marginTop: "1rem" }}>
-          <button className="quiz-button" onClick={next}>
+          <button style={{float: "right"}} className="quiz-button" onClick={next}>
             {qIndex < quizData.length - 1 ? "Next" : "Finish"}
           </button>
+
         </div>
+        
+
       )}
-      <br/>
-      <button className="quiz-button" onClick={() => navigate("/")}>
+      <button style={{position: "fixed", bottom: "20px", right: "20px", width: "150px", backgroundColor: "black"}} className="quiz-button" onClick={() => navigate("/")}>
           Back Home
       </button>
+      
+      
     </div>
   );
 }
