@@ -8,7 +8,6 @@ import workerSrc from "pdfjs-dist/build/pdf.worker.entry";
 pdfjsLib.GlobalWorkerOptions.workerSrc = workerSrc;
 
 const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
-console.log("Gemini key", process.env.REACT_APP_GEMINI_API_KEY);
 const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
 
 function MainPage({ setQuizData }) {
